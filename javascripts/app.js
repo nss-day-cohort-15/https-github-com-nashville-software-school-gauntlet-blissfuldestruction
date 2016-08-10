@@ -65,6 +65,13 @@ var Gauntlet = (function(gauntlet){
       }
     });
 
+    // Click event to assign class to player object
+    $('.paths').click(function(e) {
+      var path = $(e.currentTarget).find('.btn__text').text();
+      player.class = new gauntlet.GuildHall[path]();
+      console.log(player)
+    })
+
     /*
       When the back button clicked, move back a view
      */
@@ -75,6 +82,10 @@ var Gauntlet = (function(gauntlet){
     });
 
   });
+
+  gauntlet.getPlayer = function() {
+    return player;
+  }
 
   return gauntlet;
 })(Gauntlet || {});

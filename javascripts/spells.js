@@ -1,11 +1,11 @@
 var Gauntlet = (function(gauntlet){
-  Gauntlet.SpellBook = {};
+  gauntlet.SpellBook = {};
 
 
   /*
     Base spell function that defines name, damage, damage type
    */
-  Gauntlet.SpellBook.Spell = function() {
+  gauntlet.SpellBook.Spell = function() {
     this.name = "";
     this.damage = 0;
 
@@ -20,12 +20,12 @@ var Gauntlet = (function(gauntlet){
   /*
     An elemental sphere that can be cast by a magical class
    */
-  Gauntlet.SpellBook.Sphere = function() {
+  gauntlet.SpellBook.Sphere = function() {
     this.name = "sphere";
     this.damage = Math.floor(Math.random() * 10 + 10);
 
     var random = Math.round(Math.random() * (this.damageTypes.length - 1));
     this.type = this.damageTypes[random];
   };
-  Gauntlet.SpellBook.Sphere.prototype = new Gauntlet.SpellBook.Spell();
+  gauntlet.SpellBook.Sphere.prototype = new gauntlet.SpellBook.Spell();
 })(Gauntlet || {});

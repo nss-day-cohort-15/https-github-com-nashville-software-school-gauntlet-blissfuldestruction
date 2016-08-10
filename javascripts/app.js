@@ -22,12 +22,6 @@ var Gauntlet = (function(gauntlet){
      */
     $("#player-setup").show();
 
-    $("#select-class").click(function() {
-      console.log("Should be working...");
-      player = gauntlet.getNewPlayer($("#player-name").val());
-      console.log(player);
-    });
-
     /*
       When any button with card__link class is clicked,
       move on to the next view.

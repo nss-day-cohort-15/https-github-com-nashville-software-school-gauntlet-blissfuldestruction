@@ -15,8 +15,8 @@ var Gauntlet = (function(gauntlet){
   var spell = new gauntlet.SpellBook.Sphere();
   console.log("spell: ", spell.toString());
 
-
   $(document).ready(function() {
+
     /*
       Show the initial view that accepts player name
      */

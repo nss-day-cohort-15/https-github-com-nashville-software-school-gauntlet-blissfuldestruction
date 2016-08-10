@@ -121,6 +121,15 @@ var Gauntlet = (function(gauntlet){
         - Assassin
    */
 
+    gauntlet.GuildHall.Stealth = function() {
+    this.name = "Stealth";
+    this.magical = true;
+    this.healthBonus = this.healthBonus - 10;
+    this.strengthBonus = this.strengthBonus - 20;
+    this.intelligenceBonus = this.intelligenceBonus + 20;
+  };
+  gauntlet.GuildHall.Stealth.prototype = new gauntlet.GuildHall.PlayerClass();
+
    gauntlet.GuildHall.Thief = function() {
     this.name = "Thief";
     this.healthBonus = this.healthBonus - 10;

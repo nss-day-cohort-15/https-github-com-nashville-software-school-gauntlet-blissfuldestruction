@@ -29,4 +29,5 @@ var Gauntlet = (function(gauntlet){
     this.hands = 2;
   };
   WarAxe.prototype = new Weapon();
+  return gauntlet;
 })(Gauntlet || {});

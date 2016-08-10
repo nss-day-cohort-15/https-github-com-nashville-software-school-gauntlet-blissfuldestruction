@@ -120,5 +120,5 @@ var Gauntlet = (function(gauntlet){
         - Ninja
         - Assassin
    */
-
+   return gauntlet;
 })(Gauntlet || {});

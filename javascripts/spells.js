@@ -28,4 +28,5 @@ var Gauntlet = (function(gauntlet){
     this.type = this.damageTypes[random];
   };
   gauntlet.SpellBook.Sphere.prototype = new gauntlet.SpellBook.Spell();
+  return gauntlet;
 })(Gauntlet || {});

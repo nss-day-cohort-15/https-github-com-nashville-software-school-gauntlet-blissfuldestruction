@@ -15,12 +15,18 @@ var Gauntlet = (function(gauntlet){
   var spell = new gauntlet.SpellBook.Sphere();
   console.log("spell: ", spell.toString());
 
-
   $(document).ready(function() {
+
     /*
       Show the initial view that accepts player name
      */
     $("#player-setup").show();
+
+    $("#select-class").click(function() {
+      console.log("Should be working...");
+      player = gauntlet.getNewPlayer($("#player-name").val());
+      console.log(player);
+    });
 
     /*
       When any button with card__link class is clicked,

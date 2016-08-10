@@ -43,13 +43,11 @@ var Gauntlet = (function(gauntlet) {
   gauntlet.Combatants.Player.prototype.generateClass = function() {
     // Get a random index from the allowed classes array
     var random = Math.floor(Math.random() * (this.allowedClasses.length));
-    console.log(random)
     // Get the string at the index
     var randomClass = this.allowedClasses[random];
 
     // Composes the corresponding player class into the player object
     this.class = new gauntlet.GuildHall[randomClass]();
-
     // Add the health bonus
     this.health += this.class.healthBonus;
     return this.class;

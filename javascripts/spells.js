@@ -28,5 +28,28 @@ var Gauntlet = (function(gauntlet){
     this.type = this.damageTypes[random];
   };
   gauntlet.SpellBook.Sphere.prototype = new gauntlet.SpellBook.Spell();
+
+  /*
+    Fireball spell
+   */
+  gauntlet.SpellBook.Fireball = function() {
+    this.name = "fireball";
+    this.damage = Math.floor(Math.random() * 10 + 10);
+
+    this.type = "fire";
+  };
+  gauntlet.SpellBook.Fireball.prototype = new gauntlet.SpellBook.Spell();
+
+  /*
+    Frostbolt spell
+   */
+  gauntlet.SpellBook.LightningBolt = function() {
+    this.name = "lightning bolt";
+    this.damage = Math.floor(Math.random() * 10 + 10);
+
+    this.type = "lightning";
+  };
+  gauntlet.SpellBook.LightningBolt.prototype = new gauntlet.SpellBook.Spell();
+
   return gauntlet;
 })(Gauntlet || {});

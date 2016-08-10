@@ -1,12 +1,12 @@
 var Gauntlet = (function(gauntlet){
   var warrior = new gauntlet.Combatants.Human();
-  warrior.setWeapon(new WarAxe());
+  warrior.setWeapon(gauntlet.getWeapon("WarAxe"));
   warrior.generateClass();  // This will be used for "Surprise me" option
   console.log(warrior.toString());
 
   var orc = new gauntlet.Combatants.Orc();
   orc.generateClass();
-  orc.setWeapon(new BroadSword());
+  orc.setWeapon(gauntlet.getWeapon("BroadSword"));
   console.log(orc.toString());
 
   /*

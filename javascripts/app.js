@@ -1,8 +1,8 @@
 var Gauntlet = (function(gauntlet){
-  var warrior = new gauntlet.Combatants.Human();
-  warrior.setWeapon(gauntlet.getWeapon("WarAxe"));
-  warrior.generateClass();  // This will be used for "Surprise me" option
-  console.log(warrior.toString());
+  // var warrior = new gauntlet.Combatants.Human();
+  // warrior.setWeapon(gauntlet.getWeapon("WarAxe"));
+  // warrior.generateClass();  // This will be used for "Surprise me" option
+  // console.log(warrior.toString());
 
   var orc = new gauntlet.Combatants.Orc();
   orc.generateClass();
@@ -68,8 +68,13 @@ var Gauntlet = (function(gauntlet){
     // Click event to assign class to player object
     $('.paths').click(function(e) {
       var path = $(e.currentTarget).find('.btn__text').text();
-      player.class = new gauntlet.GuildHall[path]();
-      console.log(player)
+      if (path !== 'surprise me') {
+        player.class = new gauntlet.GuildHall[path]();
+        console.log(player)
+      } else {
+        try {player.generateClass();} catch(e) {console.log("Fuck you error",e)}
+        console.log(player)
+      }
     })
 
     /*

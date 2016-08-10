@@ -120,5 +120,30 @@ var Gauntlet = (function(gauntlet){
         - Ninja
         - Assassin
    */
+
+   gauntlet.GuildHall.Thief = function() {
+    this.name = "Thief";
+    this.healthBonus = this.healthBonus - 10;
+    this.strengthBonus = this.strengthBonus - 20;
+    this.intelligenceBonus = this.intelligenceBonus + 10;
+  };
+  gauntlet.GuildHall.Thief.prototype = new gauntlet.GuildHall.Stealth();
+
+  gauntlet.GuildHall.Ninja = function() {
+    this.name = "Ninja";
+    this.healthBonus = this.healthBonus + 15;
+    this.strengthBonus = this.strengthBonus - 10;
+    this.intelligenceBonus = this.intelligenceBonus + 20;
+  };
+  gauntlet.GuildHall.Ninja.prototype = new gauntlet.GuildHall.Stealth();
+
+  gauntlet.GuildHall.Assassin = function() {
+    this.name = "Assassin";
+    this.healthBonus = this.healthBonus + 25;
+    this.strengthBonus = this.strengthBonus - 15;
+    this.intelligenceBonus = this.intelligenceBonus + 25;
+  };
+  gauntlet.GuildHall.Assassin.prototype = new gauntlet.GuildHall.Stealth();
+
    return gauntlet;
 })(Gauntlet || {});

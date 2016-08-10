@@ -15,7 +15,12 @@ var Gauntlet = (function(gauntlet){
   var spell = new gauntlet.SpellBook.Sphere();
   console.log("spell: ", spell.toString());
 
+
+  // Used to store the player object
+  var player = null;
+
   $(document).ready(function() {
+
 
     /*
       Show the initial view that accepts player name
@@ -45,6 +50,21 @@ var Gauntlet = (function(gauntlet){
       }
     });
 
+    // Click event to create player object
+    $('#create-player').click(function (e) {
+      console.log(`Clicked ${e.target}`);
+      // Check for input
+      if (!$('#player-name').val()) {
+        alert('Error: No player name entered!');
+      } else {
+        player = new gauntlet.Combatants.Human();
+        player.playerName = $('#player-name').val();
+
+        console.log(`New human created with name ${$('#player-name').val()}!`);
+        console.log(player);
+      }
+    });
+
     /*
       When the back button clicked, move back a view
      */
@@ -55,5 +75,6 @@ var Gauntlet = (function(gauntlet){
     });
 
   });
+
   return gauntlet;
 })(Gauntlet || {});

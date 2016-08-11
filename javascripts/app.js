@@ -183,7 +183,12 @@ var Gauntlet = (function(gauntlet){
         console.log("Attacking!");
 
         doBattle(player, orc);
-        doBattle(orc, player);
+        if (orc.health <= 0) {
+          gameOver();
+        }
+        else {
+          doBattle(orc, player);
+        }
       });
     }
 

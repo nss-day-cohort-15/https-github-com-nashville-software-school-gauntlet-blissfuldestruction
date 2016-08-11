@@ -174,7 +174,12 @@ var Gauntlet = (function(gauntlet){
 
       $('#attack-button').click(function() {
         doBattle(player, orc);
-        doBattle(orc, player);
+        if (orc.health <= 0) {
+          gameOver();
+        }
+        else {
+          doBattle(orc, player);
+        }
       });
     }
 

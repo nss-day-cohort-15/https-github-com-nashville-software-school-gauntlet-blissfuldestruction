@@ -77,6 +77,22 @@ var Gauntlet = (function(gauntlet){
       }
     })
 
+    // Click event to assign weapon to player object
+    $('.weapon').click(function(e) {
+      var weapon = $(e.currentTarget).find('.btn__text').text();
+      weapon = weapon.replace(/\s/g, '');
+      player.weapon = gauntlet.getWeapon(weapon);
+      console.log(player)
+      })
+
+    // Click event to assign weapon to player object
+    $('.weapon').click(function(e) {
+      var spell = $(e.currentTarget).find('.btn__text').text();
+      spell = spell.replace(/\s/g, '');
+      player.weapon = gauntlet.getWeapon(weapon);
+      console.log(player)
+      })
+
     /*
       When the back button clicked, move back a view
      */

@@ -134,6 +134,7 @@ var Gauntlet = (function(gauntlet){
     $('.goToBattle').click(function() {
       $('#spell-select').hide();
       $('#weapon-select').hide();
+      $('#stealth-select').hide();
       $('#battleground').show();
       finalizeStats();
       buildBattlefield();

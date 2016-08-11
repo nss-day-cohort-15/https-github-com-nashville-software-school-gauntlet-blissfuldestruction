@@ -82,11 +82,19 @@ var Gauntlet = (function(gauntlet){
       if (player.class.magical) {
         $('#spell-select').show();
         $('#weapon-select').hide();
+        $('#stealth-select').hide();
       }
       // If class is not magical, show weapons
+      else if (player.class.sneaky) {
+        $('#stealth-select').show();
+        $('#spell-select').hide();
+        $('#weapon-select').hide();
+      }
+      //If class is not magical, show stealth weapons
       else {
         $('#weapon-select').show();
         $('#spell-select').hide();
+        $('#stealth-select').hide();
       }
     });
 
@@ -106,9 +114,15 @@ var Gauntlet = (function(gauntlet){
       console.log(player)
       })
 
-    /*
-      When the back button clicked, move back a view
-     */
+    //Click event to assign stealth weapon to player object
+    $('.stealth').click(function(e) {
+      var stealthWeapon = $(e.currentTarget).find('.btn__text').text();
+      player.weapon = gauntlet.getStealthWeapon(stealthWeapon);
+      console.log(player)
+      })
+
+      // When the back button clicked, move back a view
+
     $(".card__back").click(function(e) {
       var previousCard = $(this).attr("previous");
       $(".card").hide();

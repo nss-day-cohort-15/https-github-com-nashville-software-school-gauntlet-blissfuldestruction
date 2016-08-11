@@ -181,29 +181,24 @@ var Gauntlet = (function(gauntlet){
           doBattle(orc, player);
         }
       });
-    }
+      var audio = new Audio();
 
-    //Adds swords sound when attack button is clicked
-
-        var audioElement = document.createElement('audio');
-        audioElement.setAttribute('src', 'audio.mp3');
-        audioElement.setAttribute('autoplay', 'autoplay');
-        //audioElement.load()
-
-        $.get();
-
-        audioElement.addEventListener("load", function() {
-            audioElement.play();
-        }, true);
-
-        $('.play').click(function() {
-            audioElement.play();
-        });
-
-        $('.pause').click(function() {
-            audioElement.stop();
-        });
-
+//Adds sounds when attack button is clicked for classes
+        $('#attack-button').click(function() {
+          if (player.class.baseClass === "fighter") {
+            audio = new Audio('/sounds/275159__bird-man__sword-clash.wav');
+            audio.play();
+        }
+          else if (player.class.baseClass === "mage") {
+            audio = new Audio('/sounds/334240__liamg-sfx__laser-shot-1.wav');
+            audio.play();
+      }
+          else if (player.class.baseClass === "stealth") {
+            audio = new Audio('/sounds/160756__cosmicembers__fast-swing-air-woosh.wav');
+            audio.play();
+          }
+      })
+      };
 
     /*
       When the back button clicked, move back a view

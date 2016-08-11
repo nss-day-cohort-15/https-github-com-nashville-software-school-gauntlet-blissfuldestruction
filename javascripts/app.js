@@ -210,7 +210,37 @@ var Gauntlet = (function(gauntlet){
           </div>
         </div>
       `);
-    }
+
+
+
+      $('#attack-button').click(function() {
+        doBattle(player, orc);
+        if (orc.health <= 0) {
+          gameOver();
+        }
+        else {
+          doBattle(orc, player);
+        }
+      });
+      var audio = new Audio();
+
+//Adds sounds when attack button is clicked for classes
+        $('#attack-button').click(function() {
+          if (player.class.baseClass === "fighter") {
+            audio = new Audio('/sounds/275159__bird-man__sword-clash.wav');
+            audio.play();
+        }
+          else if (player.class.baseClass === "mage") {
+            audio = new Audio('/sounds/334240__liamg-sfx__laser-shot-1.wav');
+            audio.play();
+      }
+          else if (player.class.baseClass === "stealth") {
+            audio = new Audio('/sounds/160756__cosmicembers__fast-swing-air-woosh.wav');
+            audio.play();
+          }
+      })
+      };
+
 
     /*
       When the back button clicked, move back a view

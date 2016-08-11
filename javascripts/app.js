@@ -118,7 +118,45 @@ var Gauntlet = (function(gauntlet){
       })
 
     // Dynamically display Battlefield HTML
+    $('.goToBattle').click(function() {
+      $('#spell-select').hide();
+      $('#weapon-select').hide();
+      $('#battleground').show();
+      finalizeStats();
+      buildBattlefield();
+    });
 
+    function finalizeStats() {
+      player.intelligence += player.class.intelligenceBonus
+      player.strength += player.class.strengthBonus
+      player.health += player.class.healthBonus
+      console.dir(player)
+      orc.intelligence += orc.class.intelligenceBonus
+      orc.strength += orc.class.strengthBonus
+      orc.health += orc.class.healthBonus
+      console.dir(orc)
+    }
+
+    function buildBattlefield() {
+      $('#battleground').html(`
+        <div class = "container">
+          <div class = "col-lg-6 col-md-6 col-sm-6 col-xs-6">
+            <h2>Player Area</h2>
+            <p>Name: ${player.playerName}</p>
+            <p>Class: ${player.class.name}</p>
+            <p>Weapon: ${player.weapon.name}</p>
+            <p>Health: ${player.health}</p>
+          </div>
+          <div class = "col-lg-6 col-md-6 col-sm-6 col-xs-6">
+            <h2>Monster Area</h2>
+            <p>Name: ${orc.species}</p>
+            <p>Class: ${orc.class.name}</p>
+            <p>Weapon: ${orc.weapon.name}</p>
+            <p>Health: ${orc.health}</p>
+          </div>
+        </div>
+      `)
+    }
 
     /*
       When the back button clicked, move back a view

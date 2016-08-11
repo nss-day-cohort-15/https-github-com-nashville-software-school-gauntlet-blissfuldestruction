@@ -154,7 +154,7 @@ var Gauntlet = (function(gauntlet){
             <p>Weapon: ${orc.weapon.name}</p>
             <p>Health: ${orc.health}</p>
           </div>
-          <div class="card__button">
+          <div class="card__button" id="attack-button">
             <a class="card__link btn btn--big btn--orange"
              href="#">
               <span class="btn__prompt">></span>
@@ -162,7 +162,15 @@ var Gauntlet = (function(gauntlet){
             </a>
           </div>
         </div>
-      `)
+      `);
+
+
+      $('#attack-button').click(function() {
+        console.log("Attacking!");
+
+        doBattle(player, orc);
+        doBattle(orc, player);
+      });
     }
 
     /*
@@ -186,6 +194,31 @@ var Gauntlet = (function(gauntlet){
         return parseInt((attacker.strength/10) + attacker.weapon.damage);
       }
     };
+
+
+    function doBattle(attacker, receiver) {
+      console.log("inside doBattle");
+      if (receiver.health - calculateAttack(attacker) <= 0) {
+        receiver.health = 0;
+        buildBattlefield();
+        gameOver(receiver, attacker);
+      }
+      else {
+        console.log(attacker, ' attacked ', receiver);
+        console.log(`Attacking for ${calculateAttack(attacker)}`);
+        receiver.health -= calculateAttack(attacker);
+        buildBattlefield();
+      }
+    }
+
+    function gameOver(loser, winner) {
+      $('#attack-button').html(`GAME OVER`);
+      $('#attack-button').off('click');
+      $('#battleground').append(`
+        <h1>${winner.name} is victorious!</h1>
+        <h2>Better luck next time, ${loser.name}!</h2>
+      `);
+    }
 
   });
 

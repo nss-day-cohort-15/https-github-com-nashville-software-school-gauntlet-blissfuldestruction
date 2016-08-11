@@ -7,7 +7,7 @@ gauntlet.Combatants.Orc = function() {
 
   this.generateClass = function() {
     // Get a random index from the allowed classes array
-    var random = Math.round(Math.random() * (this.allowedClasses.length - 1));
+    var random = Math.floor(Math.random() * (this.allowedClasses.length));
 
     // Get the string at the index
     var randomClass = this.allowedClasses[random];

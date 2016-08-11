@@ -70,10 +70,8 @@ var Gauntlet = (function(gauntlet){
       var path = $(e.currentTarget).find('.btn__text').text();
       if (path !== 'surprise me') {
         player.class = new gauntlet.GuildHall[path]();
-        console.log(player);
       } else {
-        try {player.generateClass();} catch(e) {console.log("Fuck you error",e)}
-        console.log(player);
+        player.generateClass();
       }
     });
 
@@ -112,23 +110,20 @@ var Gauntlet = (function(gauntlet){
       var weapon = $(e.currentTarget).find('.btn__text').text();
       weapon = weapon.replace(/\s/g, '');
       player.weapon = gauntlet.getWeapon(weapon);
-      console.log(player)
-      })
+      });
 
     // Click event to assign spell to player object
     $('.spell').click(function(e) {
       var spell = $(e.currentTarget).find('.btn__text').text();
       spell = spell.replace(/\s/g, '');
       player.weapon = new gauntlet.SpellBook[spell]();
-      console.log(player)
-      })
+      });
 
     //Click event to assign stealth weapon to player object
     $('.stealth').click(function(e) {
       var stealthWeapon = $(e.currentTarget).find('.btn__text').text();
       player.weapon = gauntlet.getStealthWeapon(stealthWeapon);
-      console.log(player)
-      })
+      });
 
     // Dynamically display Battlefield HTML
     $('.goToBattle').click(function() {
@@ -141,14 +136,12 @@ var Gauntlet = (function(gauntlet){
     });
 
     function finalizeStats() {
-      player.intelligence += player.class.intelligenceBonus
-      player.strength += player.class.strengthBonus
-      player.health += player.class.healthBonus
-      console.dir(player)
-      orc.intelligence += orc.class.intelligenceBonus
-      orc.strength += orc.class.strengthBonus
-      orc.health += orc.class.healthBonus
-      console.dir(orc)
+      player.intelligence += player.class.intelligenceBonus;
+      player.strength += player.class.strengthBonus;
+      player.health += player.class.healthBonus;
+      orc.intelligence += orc.class.intelligenceBonus;
+      orc.strength += orc.class.strengthBonus;
+      orc.health += orc.class.healthBonus;
     }
 
     function buildBattlefield() {
@@ -180,8 +173,6 @@ var Gauntlet = (function(gauntlet){
 
 
       $('#attack-button').click(function() {
-        console.log("Attacking!");
-
         doBattle(player, orc);
         if (orc.health <= 0) {
           gameOver();
@@ -212,7 +203,7 @@ var Gauntlet = (function(gauntlet){
       else {
         return parseInt((attacker.strength/10) + attacker.weapon.damage);
       }
-    };
+    }
 
 
     function doBattle(attacker, receiver) {
@@ -243,7 +234,7 @@ var Gauntlet = (function(gauntlet){
 
   gauntlet.getPlayer = function() {
     return player;
-  }
+  };
 
   return gauntlet;
 })(Gauntlet || {});

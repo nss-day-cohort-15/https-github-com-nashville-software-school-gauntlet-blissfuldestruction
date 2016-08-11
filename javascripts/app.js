@@ -17,6 +17,31 @@ var Gauntlet = (function(gauntlet){
      */
     $("#player-setup").show();
 
+    let playerOptions = [
+      {
+        "Name": "Jammy Laird",
+        "hash": "5dfdaab8a84c8abc6193c2b43d62ba83"
+      },
+      {
+        "Name": "Matt Hamil",
+        "hash": "035cdc66a3fa529e8a4901dffb8b7900"
+      },
+      {
+        "Name": "Lauren Knight",
+        "hash": "cd20e61cdafaef6298dbddfdd5899b2d"
+      },
+      {
+        "Name": "Matt Kraatz",
+        "hash": "9fd2f7838a41285d9728e7085c82dafa"
+      }
+    ]
+
+    playerOptions.forEach(function(i){
+      $('#player-selection').append(`
+        <option>${i.Name}</option>
+      `)
+    })
+
     /*
       When any button with card__link class is clicked,
       move on to the next view.
@@ -42,13 +67,13 @@ var Gauntlet = (function(gauntlet){
 
     // Click event to create player object
     $('#create-player').click(function (e) {
-      // Check for input
-      if (!$('#player-name').val()) {
-        alert('Error: No player name entered!');
-      } else {
         player = new gauntlet.Combatants.Human();
-        player.playerName = $('#player-name').val();
-      }
+        player.playerName = $('#player-selection').val();
+        for (var i = 0; i < playerOptions.length; i++) {
+          if (playerOptions[i].Name === player.playerName) {
+            player.img = `https://www.gravatar.com/avatar/${playerOptions[i].hash}?s=200`;
+          }
+        }
     });
 
     // Click event to assign class to player object

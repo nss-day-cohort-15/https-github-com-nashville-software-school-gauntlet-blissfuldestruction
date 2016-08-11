@@ -217,7 +217,7 @@ var Gauntlet = (function(gauntlet){
       $('#attack-button').click(function() {
         doBattle(player, orc);
         if (orc.health <= 0) {
-          gameOver();
+          gameOver(orc,player);
         }
         else {
           doBattle(orc, player);

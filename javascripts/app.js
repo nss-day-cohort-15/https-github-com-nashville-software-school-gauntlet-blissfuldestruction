@@ -208,6 +208,7 @@ var Gauntlet = (function(gauntlet){
               <span class="btn__text">attack</span>
             </a>
           </div>
+          <div id="battle-results"></div>
         </div>
       `);
 
@@ -280,7 +281,7 @@ var Gauntlet = (function(gauntlet){
     function gameOver(loser, winner) {
       $('#attack-button').html(`GAME OVER`);
       $('#attack-button').off('click');
-      $('#battleground').append(`
+      $('#battle-results').html(`
         <h1>${winner.playerName} is victorious!</h1>
         <h2>Better luck next time, ${loser.playerName}!</h2>
       `);

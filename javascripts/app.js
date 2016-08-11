@@ -70,12 +70,25 @@ var Gauntlet = (function(gauntlet){
       var path = $(e.currentTarget).find('.btn__text').text();
       if (path !== 'surprise me') {
         player.class = new gauntlet.GuildHall[path]();
-        console.log(player)
+        console.log(player);
       } else {
         try {player.generateClass();} catch(e) {console.log("Fuck you error",e)}
-        console.log(player)
+        console.log(player);
       }
-    })
+    });
+
+    $('#fighting-style').click(function() {
+      // If class is magical, show spells
+      if (player.class.magical) {
+        $('#spell-select').show();
+        $('#weapon-select').hide();
+      }
+      // If class is not magical, show weapons
+      else {
+        $('#weapon-select').show();
+        $('#spell-select').hide();
+      }
+    });
 
     /*
       When the back button clicked, move back a view

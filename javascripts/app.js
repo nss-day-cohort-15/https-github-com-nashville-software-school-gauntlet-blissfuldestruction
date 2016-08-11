@@ -133,6 +133,17 @@ var Gauntlet = (function(gauntlet){
       $('#battleground').show();
       finalizeStats();
       buildBattlefield();
+
+      // Add event listener to Attack button
+      $('#attack-button').click(function() {
+        doBattle(player, orc);
+        if (orc.health <= 0) {
+          gameOver();
+        }
+        else {
+          doBattle(orc, player);
+        }
+      });
     });
 
     function finalizeStats() {
@@ -151,27 +162,29 @@ var Gauntlet = (function(gauntlet){
     function buildBattlefield() {
       $('#battleground').html(`
         <div class = "container">
-          <div class = "col-lg-6 col-md-6 col-sm-6 col-xs-6">
-            <h2>Player Area</h2>
-            <div class="progress">
-              <div class="progress-bar" role="progressbar" style="width: ${parseInt(player.health/player.startingHp * 100)}%;" id="player-healthbar">
-                ${player.health}
+          <div class="row">
+            <div class = "col-lg-6 col-md-6 col-sm-6 col-xs-6">
+              <h2>Player Area</h2>
+              <div class="progress">
+                <div class="progress-bar" role="progressbar" style="width: 100%;" id="player-healthbar">
+                  ${player.health}
+                </div>
               </div>
+              <div>Name: </div><p id="player-name">${player.playerName}</p>
+              <p>Class: ${player.class.name}</p>
+              <p>Weapon: ${player.weapon.name}</p>
             </div>
-            <p>Name: ${player.playerName}</p>
-            <p>Class: ${player.class.name}</p>
-            <p>Weapon: ${player.weapon.name}</p>
-          </div>
-          <div class = "col-lg-6 col-md-6 col-sm-6 col-xs-6">
-            <h2>Monster Area</h2>
-            <div class="progress">
-              <div class="progress-bar progress-bar-danger" role="progressbar" style="width: ${parseInt(orc.health/orc.startingHp * 100)}%;" id="enemy-healthbar">
-                ${orc.health}
+            <div class = "col-lg-6 col-md-6 col-sm-6 col-xs-6">
+              <h2>Monster Area</h2>
+              <div class="progress">
+                <div class="progress-bar progress-bar-danger" role="progressbar" style="width: 100%;" id="enemy-healthbar">
+                  ${orc.health}
+                </div>
               </div>
+              <p id="enemy-name">Species: ${orc.species}</p>
+              <p>Class: ${orc.class.name}</p>
+              <p>Weapon: ${orc.weapon.name}</p>
             </div>
-            <p>Species: ${orc.species}</p>
-            <p>Class: ${orc.class.name}</p>
-            <p>Weapon: ${orc.weapon.name}</p>
           </div>
           <div class="card__button" id="attack-button">
             <a class="card__link btn btn--big btn--orange"
@@ -182,17 +195,6 @@ var Gauntlet = (function(gauntlet){
           </div>
         </div>
       `);
-
-
-      $('#attack-button').click(function() {
-        doBattle(player, orc);
-        if (orc.health <= 0) {
-          gameOver();
-        }
-        else {
-          doBattle(orc, player);
-        }
-      });
     }
 
     /*
@@ -222,14 +224,14 @@ var Gauntlet = (function(gauntlet){
       console.log("inside doBattle");
       if (receiver.health - calculateAttack(attacker) <= 0) {
         receiver.health = 0;
-        buildBattlefield();
+        updateHealthBars();
         gameOver(receiver, attacker);
       }
       else {
         console.log(attacker, ' attacked ', receiver);
         console.log(`Attacking for ${calculateAttack(attacker)}`);
         receiver.health -= calculateAttack(attacker);
-        buildBattlefield();
+        updateHealthBars();
       }
     }
 
@@ -240,6 +242,18 @@ var Gauntlet = (function(gauntlet){
         <h1>${winner.name} is victorious!</h1>
         <h2>Better luck next time, ${loser.name}!</h2>
       `);
+    }
+
+    function updateHealthBars() {
+      $('#player-healthbar').html(`${player.health}`);
+      $('#player-healthbar').css('width', () => {
+        return `${parseInt(player.health/player.startingHp * 100)}%`;
+      });
+
+      $('#enemy-healthbar').html(`${orc.health}`);
+      $('#enemy-healthbar').css('width', () => {
+        return `${parseInt(orc.health/orc.startingHp * 100)}%`;
+      });
     }
   });
 

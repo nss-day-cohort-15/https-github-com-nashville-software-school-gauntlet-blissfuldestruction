@@ -8,7 +8,7 @@ var Gauntlet = (function(gauntlet) {
     this.species = null;
     this.class = null;
     this.weapon = null;
-    this.img = null;
+    this.img = "https://www.gravatar.com/avatar/?s=200";
 
     this.playerName = name || "unknown adventurer";
     this.health = Math.floor(Math.random() * 40 + 50);

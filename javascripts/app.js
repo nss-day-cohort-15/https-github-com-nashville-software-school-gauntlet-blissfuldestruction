@@ -65,6 +65,11 @@ var Gauntlet = (function(gauntlet){
       }
     });
 
+    $('.paths').click(function (e) {
+      console.dir();
+      player.class = $(e.currentTarget).find('.btn__text').text()
+    });
+
     /*
       When the back button clicked, move back a view
      */

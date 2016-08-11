@@ -77,7 +77,16 @@ var Gauntlet = (function(gauntlet){
       }
     });
 
-    $('#fighting-style').click(function() {
+
+      $('#fighting-style').click(function(e) {
+      // If no class is selected
+      if (!player.class) {
+        alert('You must select a class, adventurer!');
+        var previousCard = $(this).attr("previous");
+        $(".card").hide();
+        $("." + previousCard).show();
+      }
+
       // If class is magical, show spells
       if (player.class.magical) {
         $('#spell-select').show();
@@ -121,13 +130,75 @@ var Gauntlet = (function(gauntlet){
       console.log(player)
       })
 
-      // When the back button clicked, move back a view
+    // Dynamically display Battlefield HTML
+    $('.goToBattle').click(function() {
+      $('#spell-select').hide();
+      $('#weapon-select').hide();
+      $('#battleground').show();
+      finalizeStats();
+      buildBattlefield();
+    });
 
+    function finalizeStats() {
+      player.intelligence += player.class.intelligenceBonus
+      player.strength += player.class.strengthBonus
+      player.health += player.class.healthBonus
+      console.dir(player)
+      orc.intelligence += orc.class.intelligenceBonus
+      orc.strength += orc.class.strengthBonus
+      orc.health += orc.class.healthBonus
+      console.dir(orc)
+    }
+
+    function buildBattlefield() {
+      $('#battleground').html(`
+        <div class = "container">
+          <div class = "col-lg-6 col-md-6 col-sm-6 col-xs-6">
+            <h2>Player Area</h2>
+            <p>Name: ${player.playerName}</p>
+            <p>Class: ${player.class.name}</p>
+            <p>Weapon: ${player.weapon.name}</p>
+            <p>Health: ${player.health}</p>
+          </div>
+          <div class = "col-lg-6 col-md-6 col-sm-6 col-xs-6">
+            <h2>Monster Area</h2>
+            <p>Species: ${orc.species}</p>
+            <p>Class: ${orc.class.name}</p>
+            <p>Weapon: ${orc.weapon.name}</p>
+            <p>Health: ${orc.health}</p>
+          </div>
+          <div class="card__button">
+            <a class="card__link btn btn--big btn--orange"
+             href="#">
+              <span class="btn__prompt">></span>
+              <span class="btn__text">attack</span>
+            </a>
+          </div>
+        </div>
+      `)
+    }
+
+    /*
+      When the back button clicked, move back a view
+     */
     $(".card__back").click(function(e) {
       var previousCard = $(this).attr("previous");
       $(".card").hide();
       $("." + previousCard).show();
     });
+
+    // Attack function
+    function calculateAttack(attacker) {
+      // If the attacker is magical
+      if (attacker.magical) {
+        return parseInt((attacker.intelligence/10) + attacker.weapon.damage);
+      }
+
+      // If the attacker is not magical
+      else {
+        return parseInt((attacker.strength/10) + attacker.weapon.damage);
+      }
+    };
 
   });
 

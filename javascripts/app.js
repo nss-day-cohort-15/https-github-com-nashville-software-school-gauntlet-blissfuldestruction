@@ -1,28 +1,16 @@
 var Gauntlet = (function(gauntlet){
-  // var warrior = new gauntlet.Combatants.Human();
-  // warrior.setWeapon(gauntlet.getWeapon("WarAxe"));
-  // warrior.generateClass();  // This will be used for "Surprise me" option
-  // console.log(warrior.toString());
 
+  // Enemy creation with random class
   var orc = new gauntlet.Combatants.Orc();
   orc.img = "https://www.gravatar.com/avatar/33a9070c9273cf516db78c125a980941?s=200"
   orc.playerName = "Scott H"
   orc.generateClass();
   orc.setWeapon(gauntlet.getWeapon("BroadSword"));
-  console.log(orc.toString());
-
-  /*
-    Test code to generate a spell
-   */
-  var spell = new gauntlet.SpellBook.Sphere();
-  console.log("spell: ", spell.toString());
-
 
   // Used to store the player object
   var player = null;
 
   $(document).ready(function() {
-
 
     /*
       Show the initial view that accepts player name
@@ -131,6 +119,17 @@ var Gauntlet = (function(gauntlet){
       $('#battleground').show();
       finalizeStats();
       buildBattlefield();
+
+      // Add event listener to Attack button
+      $('#attack-button').click(function() {
+        doBattle(player, orc);
+        if (orc.health <= 0) {
+          gameOver();
+        }
+        else {
+          doBattle(orc, player);
+        }
+      });
     });
 
     function finalizeStats() {
@@ -140,27 +139,42 @@ var Gauntlet = (function(gauntlet){
       orc.intelligence += orc.class.intelligenceBonus;
       orc.strength += orc.class.strengthBonus;
       orc.health += orc.class.healthBonus;
+
+      // Used in the Health bars
+      player.startingHp = player.health;
+      orc.startingHp = orc.health;
     }
 
     function buildBattlefield() {
       $('#battleground').html(`
         <div class = "container">
-          <div class = "battledome col-lg-6 col-md-6 col-sm-6 col-xs-6">
-            <h2>Hero</h2>
-            <p>Name: ${player.playerName}</p>
-            <p>Species: ${player.species}</p>
-            <p>Class: ${player.class.name}</p>
-            <p>Weapon: ${player.weapon.name}</p>
-            <p>Health: ${player.health}</p>
-          </div>
-          <div class = "battledome col-lg-6 col-md-6 col-sm-6 col-xs-6">
-            <h2>Monster</h2>
-            <img src="${orc.img}">
-            <p>Name: ${orc.playerName}</p>
-            <p>Species: ${orc.species}</p>
-            <p>Class: ${orc.class.name}</p>
-            <p>Weapon: ${orc.weapon.name}</p>
-            <p>Health: ${orc.health}</p>
+          <div class="row">
+            <div class = "battledome col-lg-6 col-md-6 col-sm-6 col-xs-6">
+              <h2>Hero</h2>
+              <div class="progress">
+                <div class="progress-bar" role="progressbar" style="width: 100%;" id="player-healthbar">
+                  ${player.health}
+                </div>
+              </div>
+              <img src="${player.img}">
+              <p>Name: ${player.playerName}</p>
+              <p>Species: ${player.species}</p>
+              <p>Class: ${player.class.name}</p>
+              <p>Weapon: ${player.weapon.name}</p>
+            </div>
+            <div class = "battledome col-lg-6 col-md-6 col-sm-6 col-xs-6">
+              <h2>Monster</h2>
+              <div class="progress">
+                <div class="progress-bar progress-bar-danger" role="progressbar" style="width: 100%;" id="enemy-healthbar">
+                  ${orc.health}
+                </div>
+              </div>
+              <img src="${orc.img}">
+              <p>Name: ${orc.playerName}</p>
+              <p>Species: ${orc.species}</p>
+              <p>Class: ${orc.class.name}</p>
+              <p>Weapon: ${orc.weapon.name}</p>
+            </div>
           </div>
           <div class="card__button" id="attack-button">
             <a class="card__link btn btn--big btn--orange"
@@ -175,7 +189,7 @@ var Gauntlet = (function(gauntlet){
       $('#attack-button').click(function() {
         doBattle(player, orc);
         if (orc.health <= 0) {
-          gameOver();
+          gameOver(orc,player);
         }
         else {
           doBattle(orc, player);
@@ -209,12 +223,12 @@ var Gauntlet = (function(gauntlet){
     function doBattle(attacker, receiver) {
       if (receiver.health - calculateAttack(attacker) <= 0) {
         receiver.health = 0;
-        buildBattlefield();
+        updateHealthBars();
         gameOver(receiver, attacker);
       }
       else {
         receiver.health -= calculateAttack(attacker);
-        buildBattlefield();
+        updateHealthBars();
       }
     }
 
@@ -227,6 +241,17 @@ var Gauntlet = (function(gauntlet){
       `);
     }
 
+    function updateHealthBars() {
+      $('#player-healthbar').html(`${player.health}`);
+      $('#player-healthbar').css('width', () => {
+        return `${parseInt(player.health/player.startingHp * 100)}%`;
+      });
+
+      $('#enemy-healthbar').html(`${orc.health}`);
+      $('#enemy-healthbar').css('width', () => {
+        return `${parseInt(orc.health/orc.startingHp * 100)}%`;
+      });
+    }
   });
 
   gauntlet.getPlayer = function() {

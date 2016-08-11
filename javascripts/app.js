@@ -32,7 +32,7 @@ var Gauntlet = (function(gauntlet){
       },
       {
         "Name": "Matt Kraatz",
-        "hash": "9fd2f7838a41285d9728e7085c82dafa"
+        "hash": "a1fdd5f0c5f7c86318c23aacd6da6031"
       }
     ]
 

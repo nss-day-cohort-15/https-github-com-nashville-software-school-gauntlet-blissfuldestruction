@@ -77,7 +77,8 @@ var Gauntlet = (function(gauntlet){
       }
     });
 
-    $('#fighting-style').click(function(e) {
+
+      $('#fighting-style').click(function(e) {
       // If no class is selected
       if (!player.class) {
         alert('You must select a class, adventurer!');
@@ -86,18 +87,23 @@ var Gauntlet = (function(gauntlet){
         $("." + previousCard).show();
       }
 
-      // When a player selects a class
+      // If class is magical, show spells
+      if (player.class.magical) {
+        $('#spell-select').show();
+        $('#weapon-select').hide();
+        $('#stealth-select').hide();
+      }
+      // If class is not magical, show weapons
+      else if (player.class.sneaky) {
+        $('#stealth-select').show();
+        $('#spell-select').hide();
+        $('#weapon-select').hide();
+      }
+      //If class is not magical, show stealth weapons
       else {
-        // If class is magical, show spells
-        if (player.class.magical) {
-          $('#spell-select').show();
-          $('#weapon-select').hide();
-        }
-        // If class is not magical, show weapons
-        else {
-          $('#weapon-select').show();
-          $('#spell-select').hide();
-        }
+        $('#weapon-select').show();
+        $('#spell-select').hide();
+        $('#stealth-select').hide();
       }
     });
 
@@ -114,6 +120,13 @@ var Gauntlet = (function(gauntlet){
       var spell = $(e.currentTarget).find('.btn__text').text();
       spell = spell.replace(/\s/g, '');
       player.weapon = new gauntlet.SpellBook[spell]();
+      console.log(player)
+      })
+
+    //Click event to assign stealth weapon to player object
+    $('.stealth').click(function(e) {
+      var stealthWeapon = $(e.currentTarget).find('.btn__text').text();
+      player.weapon = gauntlet.getStealthWeapon(stealthWeapon);
       console.log(player)
       })
 

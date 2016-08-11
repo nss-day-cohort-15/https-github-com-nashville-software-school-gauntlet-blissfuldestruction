@@ -106,6 +106,9 @@ var Gauntlet = (function(gauntlet){
       console.log(player)
       })
 
+    // Dynamically display Battlefield HTML
+
+
     /*
       When the back button clicked, move back a view
      */

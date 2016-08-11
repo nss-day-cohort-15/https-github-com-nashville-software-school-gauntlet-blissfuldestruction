@@ -129,6 +129,19 @@ var Gauntlet = (function(gauntlet){
       $("." + previousCard).show();
     });
 
+    // Attack function
+    function calculateAttack(attacker) {
+      // If the attacker is magical
+      if (attacker.magical) {
+        return parseInt((attacker.intelligence/10) + attacker.weapon.damage);
+      }
+
+      // If the attacker is not magical
+      else {
+        return parseInt((attacker.strength/10) + attacker.weapon.damage);
+      }
+    };
+
   });
 
   gauntlet.getPlayer = function() {

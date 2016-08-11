@@ -149,10 +149,17 @@ var Gauntlet = (function(gauntlet){
           </div>
           <div class = "col-lg-6 col-md-6 col-sm-6 col-xs-6">
             <h2>Monster Area</h2>
-            <p>Name: ${orc.species}</p>
+            <p>Species: ${orc.species}</p>
             <p>Class: ${orc.class.name}</p>
             <p>Weapon: ${orc.weapon.name}</p>
             <p>Health: ${orc.health}</p>
+          </div>
+          <div class="card__button">
+            <a class="card__link btn btn--big btn--orange"
+             href="#">
+              <span class="btn__prompt">></span>
+              <span class="btn__text">attack</span>
+            </a>
           </div>
         </div>
       `)

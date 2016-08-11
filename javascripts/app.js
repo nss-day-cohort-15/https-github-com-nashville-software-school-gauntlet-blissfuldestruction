@@ -107,7 +107,22 @@ var Gauntlet = (function(gauntlet){
       })
 
     // Dynamically display Battlefield HTML
+    $('#goToBattle').click(function() {
+      $('#spell-select').hide();
+      $('#weapon-select').hide();
+      $('#battleground').show();
+      buildBattlefield();
+    });
 
+    function buildBattlefield() {
+      $('#battleground').html(`
+        <div class = "container">
+          <div class = "col-lg-6 col-md-6 col-sm-6 col-xs-6">
+            I am the battlefield
+          <div>
+        </div>
+      `)
+    }
 
     /*
       When the back button clicked, move back a view

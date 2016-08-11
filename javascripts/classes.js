@@ -123,7 +123,6 @@ var Gauntlet = (function(gauntlet){
 
     gauntlet.GuildHall.Stealth = function() {
     this.name = "Stealth";
-    this.magical = true;
     this.healthBonus = this.healthBonus - 10;
     this.strengthBonus = this.strengthBonus - 20;
     this.intelligenceBonus = this.intelligenceBonus + 20;

@@ -183,6 +183,28 @@ var Gauntlet = (function(gauntlet){
       });
     }
 
+    //Adds swords sound when attack button is clicked
+
+        var audioElement = document.createElement('audio');
+        audioElement.setAttribute('src', 'audio.mp3');
+        audioElement.setAttribute('autoplay', 'autoplay');
+        //audioElement.load()
+
+        $.get();
+
+        audioElement.addEventListener("load", function() {
+            audioElement.play();
+        }, true);
+
+        $('.play').click(function() {
+            audioElement.play();
+        });
+
+        $('.pause').click(function() {
+            audioElement.stop();
+        });
+
+
     /*
       When the back button clicked, move back a view
      */

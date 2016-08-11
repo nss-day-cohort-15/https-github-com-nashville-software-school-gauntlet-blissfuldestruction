@@ -27,6 +27,7 @@ var Gauntlet = (function(gauntlet){
   gauntlet.GuildHall.Fighter = function() {
     this.healthBonus = 20;
     this.strengthBonus = 10;
+    this.baseClass = "fighter";
   };
   gauntlet.GuildHall.Fighter.prototype = new gauntlet.GuildHall.PlayerClass();
 
@@ -76,6 +77,7 @@ var Gauntlet = (function(gauntlet){
     this.healthBonus = this.healthBonus - 10;
     this.strengthBonus = this.strengthBonus - 20;
     this.intelligenceBonus = this.intelligenceBonus + 20;
+    this.baseClass = "mage"
   };
   gauntlet.GuildHall.Mage.prototype = new gauntlet.GuildHall.PlayerClass();
 
@@ -128,6 +130,7 @@ var Gauntlet = (function(gauntlet){
     this.healthBonus = this.healthBonus - 10;
     this.strengthBonus = this.strengthBonus - 20;
     this.intelligenceBonus = this.intelligenceBonus + 20;
+    this.baseClass = "stealth"
   };
   gauntlet.GuildHall.Stealth.prototype = new gauntlet.GuildHall.PlayerClass();
 

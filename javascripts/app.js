@@ -149,7 +149,7 @@ var Gauntlet = (function(gauntlet){
       $('#attack-button').click(function() {
         doBattle(player, orc);
         if (orc.health <= 0) {
-          gameOver();
+          gameOver(orc,player);
         }
         else {
           doBattle(orc, player);
@@ -210,16 +210,6 @@ var Gauntlet = (function(gauntlet){
           </div>
         </div>
       `);
-
-      $('#attack-button').click(function() {
-        doBattle(player, orc);
-        if (orc.health <= 0) {
-          gameOver(orc,player);
-        }
-        else {
-          doBattle(orc, player);
-        }
-      });
     }
 
     /*

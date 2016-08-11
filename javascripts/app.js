@@ -98,11 +98,11 @@ var Gauntlet = (function(gauntlet){
       console.log(player)
       })
 
-    // Click event to assign weapon to player object
-    $('.weapon').click(function(e) {
+    // Click event to assign spell to player object
+    $('.spell').click(function(e) {
       var spell = $(e.currentTarget).find('.btn__text').text();
       spell = spell.replace(/\s/g, '');
-      player.weapon = gauntlet.getWeapon(weapon);
+      player.weapon = new gauntlet.SpellBook[spell]();
       console.log(player)
       })
 

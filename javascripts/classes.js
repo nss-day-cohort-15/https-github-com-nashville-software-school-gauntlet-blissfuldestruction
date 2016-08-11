@@ -14,7 +14,7 @@ var Gauntlet = (function(gauntlet){
 
     this.toString = function() {
       return this.name;
-    }
+    };
   };
 
   /*

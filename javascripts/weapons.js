@@ -6,7 +6,7 @@ var Gauntlet = (function(gauntlet){
 
     this.toString = function() {
       return this.name;
-    }
+    };
   };
 
   var Dagger = function() {
@@ -32,11 +32,11 @@ var Gauntlet = (function(gauntlet){
 
   gauntlet.getWeapon = function(weaponName) {
     switch (weaponName) {
-      case "Dagger": return new Dagger(); break;
-      case "BroadSword": return new BroadSword(); break;
-      case "WarAxe": return new WarAxe(); break;
-      default: throw new Error('That ain\'t no weapon yo')
+      case "Dagger": return new Dagger();
+      case "BroadSword": return new BroadSword();
+      case "WarAxe": return new WarAxe();
+      default: throw new Error('That ain\'t no weapon yo');
     }
-  }
+  };
   return gauntlet;
 })(Gauntlet || {});

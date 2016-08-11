@@ -6,7 +6,7 @@ var Gauntlet = (function(gauntlet){
 
     this.toString = function() {
       return this.name;
-    }
+    };
   };
 
   var NinjaStars = function() {
@@ -32,11 +32,11 @@ var Gauntlet = (function(gauntlet){
 
   gauntlet.getStealthWeapon = function(weaponName) {
     switch (weaponName) {
-      case "Ninja Stars": return new NinjaStars(); break;
-      case "Poison Arrow": return new PoisonArrow(); break;
-      case "Sniper Rifle": return new SniperRifle(); break;
-      default: throw new Error('That ain\'t no weapon yo')
+      case "Ninja Stars": return new NinjaStars();
+      case "Poison Arrow": return new PoisonArrow();
+      case "Sniper Rifle": return new SniperRifle();
+      default: throw new Error('That ain\'t no weapon yo');
     }
-  }
+  };
   return gauntlet;
 })(Gauntlet || {});

@@ -15,11 +15,11 @@ gauntlet.Combatants.Orc = function() {
     // Composes the corresponding player class into the player object
     this.class = new gauntlet.GuildHall[randomClass]();
     return this.class;
-  }
+  };
 };
 
 gauntlet.Combatants.Orc.prototype = new gauntlet.Combatants.Monster();
 
 return gauntlet;
 
-})(Gauntlet || {})
+})(Gauntlet || {});

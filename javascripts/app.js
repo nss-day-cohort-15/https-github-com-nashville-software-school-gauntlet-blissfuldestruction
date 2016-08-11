@@ -110,20 +110,20 @@ var Gauntlet = (function(gauntlet){
       var weapon = $(e.currentTarget).find('.btn__text').text();
       weapon = weapon.replace(/\s/g, '');
       player.weapon = gauntlet.getWeapon(weapon);
-      })
+      });
 
     // Click event to assign spell to player object
     $('.spell').click(function(e) {
       var spell = $(e.currentTarget).find('.btn__text').text();
       spell = spell.replace(/\s/g, '');
       player.weapon = new gauntlet.SpellBook[spell]();
-      })
+      });
 
     //Click event to assign stealth weapon to player object
     $('.stealth').click(function(e) {
       var stealthWeapon = $(e.currentTarget).find('.btn__text').text();
       player.weapon = gauntlet.getStealthWeapon(stealthWeapon);
-      })
+      });
 
     // Dynamically display Battlefield HTML
     $('.goToBattle').click(function() {
@@ -136,12 +136,12 @@ var Gauntlet = (function(gauntlet){
     });
 
     function finalizeStats() {
-      player.intelligence += player.class.intelligenceBonus
-      player.strength += player.class.strengthBonus
-      player.health += player.class.healthBonus
-      orc.intelligence += orc.class.intelligenceBonus
-      orc.strength += orc.class.strengthBonus
-      orc.health += orc.class.healthBonus
+      player.intelligence += player.class.intelligenceBonus;
+      player.strength += player.class.strengthBonus;
+      player.health += player.class.healthBonus;
+      orc.intelligence += orc.class.intelligenceBonus;
+      orc.strength += orc.class.strengthBonus;
+      orc.health += orc.class.healthBonus;
     }
 
     function buildBattlefield() {
@@ -203,7 +203,7 @@ var Gauntlet = (function(gauntlet){
       else {
         return parseInt((attacker.strength/10) + attacker.weapon.damage);
       }
-    };
+    }
 
 
     function doBattle(attacker, receiver) {
@@ -234,7 +234,7 @@ var Gauntlet = (function(gauntlet){
 
   gauntlet.getPlayer = function() {
     return player;
-  }
+  };
 
   return gauntlet;
 })(Gauntlet || {});

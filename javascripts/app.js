@@ -142,6 +142,10 @@ var Gauntlet = (function(gauntlet){
       orc.intelligence += orc.class.intelligenceBonus;
       orc.strength += orc.class.strengthBonus;
       orc.health += orc.class.healthBonus;
+
+      // Used in the Health bars
+      player.startingHp = player.health;
+      orc.startingHp = orc.health;
     }
 
     function buildBattlefield() {
@@ -149,17 +153,25 @@ var Gauntlet = (function(gauntlet){
         <div class = "container">
           <div class = "col-lg-6 col-md-6 col-sm-6 col-xs-6">
             <h2>Player Area</h2>
+            <div class="progress">
+              <div class="progress-bar" role="progressbar" style="width: ${parseInt(player.health/player.startingHp * 100)}%;" id="player-healthbar">
+                ${player.health}
+              </div>
+            </div>
             <p>Name: ${player.playerName}</p>
             <p>Class: ${player.class.name}</p>
             <p>Weapon: ${player.weapon.name}</p>
-            <p>Health: ${player.health}</p>
           </div>
           <div class = "col-lg-6 col-md-6 col-sm-6 col-xs-6">
             <h2>Monster Area</h2>
+            <div class="progress">
+              <div class="progress-bar progress-bar-danger" role="progressbar" style="width: ${parseInt(orc.health/orc.startingHp * 100)}%;" id="enemy-healthbar">
+                ${orc.health}
+              </div>
+            </div>
             <p>Species: ${orc.species}</p>
             <p>Class: ${orc.class.name}</p>
             <p>Weapon: ${orc.weapon.name}</p>
-            <p>Health: ${orc.health}</p>
           </div>
           <div class="card__button" id="attack-button">
             <a class="card__link btn btn--big btn--orange"
@@ -229,7 +241,6 @@ var Gauntlet = (function(gauntlet){
         <h2>Better luck next time, ${loser.name}!</h2>
       `);
     }
-
   });
 
   gauntlet.getPlayer = function() {

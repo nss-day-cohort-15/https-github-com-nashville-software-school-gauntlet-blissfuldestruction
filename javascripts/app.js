@@ -77,16 +77,27 @@ var Gauntlet = (function(gauntlet){
       }
     });
 
-    $('#fighting-style').click(function() {
-      // If class is magical, show spells
-      if (player.class.magical) {
-        $('#spell-select').show();
-        $('#weapon-select').hide();
+    $('#fighting-style').click(function(e) {
+      // If no class is selected
+      if (!player.class) {
+        alert('You must select a class, adventurer!');
+        var previousCard = $(this).attr("previous");
+        $(".card").hide();
+        $("." + previousCard).show();
       }
-      // If class is not magical, show weapons
+
+      // When a player selects a class
       else {
-        $('#weapon-select').show();
-        $('#spell-select').hide();
+        // If class is magical, show spells
+        if (player.class.magical) {
+          $('#spell-select').show();
+          $('#weapon-select').hide();
+        }
+        // If class is not magical, show weapons
+        else {
+          $('#weapon-select').show();
+          $('#spell-select').hide();
+        }
       }
     });
 

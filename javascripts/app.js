@@ -228,15 +228,15 @@ var Gauntlet = (function(gauntlet){
 //Adds sounds when attack button is clicked for classes
         $('#attack-button').click(function() {
           if (player.class.baseClass === "fighter") {
-            audio = new Audio('/sounds/275159__bird-man__sword-clash.wav');
+            audio = new Audio('https://raw.githubusercontent.com/nss-day-cohort-15/https-github-com-nashville-software-school-gauntlet-blissfuldestruction/master/sounds/275159__bird-man__sword-clash.wav');
             audio.play();
         }
           else if (player.class.baseClass === "mage") {
-            audio = new Audio('/sounds/334240__liamg-sfx__laser-shot-1.wav');
+            audio = new Audio('https://raw.githubusercontent.com/nss-day-cohort-15/https-github-com-nashville-software-school-gauntlet-blissfuldestruction/master/sounds/334240__liamg-sfx__laser-shot-1.wav');
             audio.play();
       }
           else if (player.class.baseClass === "stealth") {
-            audio = new Audio('/sounds/160756__cosmicembers__fast-swing-air-woosh.wav');
+            audio = new Audio('https://raw.githubusercontent.com/nss-day-cohort-15/https-github-com-nashville-software-school-gauntlet-blissfuldestruction/master/sounds/160756__cosmicembers__fast-swing-air-woosh.wav');
             audio.play();
           }
       })
